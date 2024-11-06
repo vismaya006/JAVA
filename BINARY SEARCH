@@ -1,0 +1,105 @@
+class BinarySearch {
+    int binarySearch(int a[], int low, int high, int x)
+    {
+        while (low <= high) {
+            int m = (low + high) / 2;
+            if (a[m] == x) {
+                return m;
+
+            } else if (a[m] > x) {
+                high = m-1;
+                
+            } else {
+              low = m+1;
+            }  
+        }
+        return -1;
+    }
+
+    public static void main(String args[])
+    {
+        BinarySearch ob = new BinarySearch();
+
+        int a[] = { 10,20 ,30, 40, 50 };
+        int n = a.length;
+        int x = 2;
+      
+        int res = ob.binarySearch(a, 0, n - 1, x);
+
+        if (res == -1)
+            System.out.println("Element not present");
+        else
+            System.out.println("Element found at index " + res);
+    }
+}
+
+
+------------------------------------------------------------------------OR------------------------------------------------------------------------------------------------------------
+
+ import java.util.Scanner;
+class Main {
+  int binarySearch(int array[], int element, int low, int high) {
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+      if (array[mid] == element)
+        return mid;
+      if (element > array[mid])
+        low = mid + 1;
+      else
+        high = mid - 1;
+    }
+
+    return -1;
+  }
+
+  public static void main(String args[]) {
+    Main obj = new Main();
+    int[] array = { 3, 4, 5, 6, 7, 8, 9 };
+    int n = array.length;
+    Scanner input = new Scanner(System.in);
+    System.out.println("Enter element to be searched:");
+    int element = input.nextInt();
+    input.close();
+    int result = obj.binarySearch(array, element, 0, n - 1);
+    if (result == -1)
+      System.out.println("Not found");
+    else
+      System.out.println("Element found at index " + result);
+  }
+}  
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
