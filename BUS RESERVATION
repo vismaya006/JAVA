@@ -1,0 +1,127 @@
+package TRAVEL;
+
+public class BUS {
+    private int bno;
+    private boolean ac;
+    private int capacity;
+
+    BUS(int a, boolean b , int c) {
+        this.bno = a;
+        this.ac = b;
+        this.capacity = c;
+    }
+
+    public int busno() {
+        return bno;
+    }
+
+    public boolean isAc() {
+        return ac;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void display() {
+        System.out.println("----------------");
+        System.out.println("Bus Number: " + bno);
+        System.out.println("AC: " + ac);
+        System.out.println("Capacity: " + capacity);
+        System.out.println("----------------");
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+package TRAVEL;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class MASTER {
+    public static void main(String[] args) {
+        ArrayList<BUS> Busses = new ArrayList<>();
+        ArrayList<BOOKING> Bookings = new ArrayList<>();
+
+        Busses.add(new BUS(1, true, 55));
+        Busses.add(new BUS(2, true, 60));
+        Busses.add(new BUS(3, false, 2));
+
+        for (BUS b : Busses) {
+            b.display();
+        }
+
+        int ch = 1;
+        Scanner sc = new Scanner(System.in);
+
+        while (ch == 1) {
+            System.out.println("Enter 1 to proceed");
+            ch = sc.nextInt();
+            if (ch == 1) {
+                BOOKING book = new BOOKING(sc);
+                if (book.isAvailable(Busses, Bookings)) {
+                    System.out.println("Seat booking is confirmed");
+                    Bookings.add(book);
+                } else {
+                    System.out.println("Sorry, no seat available");
+                }
+            }
+        }
+        sc.close();
+    }
+}
+------------------------------------------------------------------------------------------------------------------------
+
+package TRAVEL;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Scanner;
+
+public class BOOKING {
+    String name;
+    int busno;
+    Date date;
+
+    BOOKING(Scanner sc) {
+        System.out.println("Enter the passenger name:");
+        name = sc.next();
+        System.out.println("Enter bus number:");
+        busno = sc.nextInt();
+        System.out.println("Enter the date in dd-MM-yyyy format:");
+        String dateStr = sc.next();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+        try {
+            date = sdf.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isAvailable(ArrayList<BUS> Busses, ArrayList<BOOKING> Bookings) {
+        int booked = 0;
+        int capacity = 0;
+
+        for (BUS bus : Busses) {
+            if (bus.busno() == busno) {
+                capacity = bus.getCapacity();
+                break;
+            }
+        }
+
+        for (BOOKING booking : Bookings) {
+            if (booking.busno == busno && booking.date.equals(date)) {
+                booked++;
+            }
+        }
+
+        return booked < capacity;
+    }
+}
+
+
