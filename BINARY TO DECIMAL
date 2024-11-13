@@ -4,7 +4,7 @@ public class Main
 	public static void main(String[] args)
 	{
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Enter binary name: ");
+		System.out.print("Enter binary num: ");
 		String b = sc.nextLine();
 		int d=0;
 		int pow=0;
