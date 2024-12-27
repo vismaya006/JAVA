@@ -1,0 +1,30 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter the rows");
+        int rows = sc.nextInt();
+        System.out.println("enter the columns");
+        int columns = sc.nextInt();
+        int [][] matrix = new int [rows][columns];
+        int diagnoalSum = 0;
+        for(int i =0; i < rows; i++)
+        {
+            for(int j =0; j < columns; j++)
+            {
+               System.out.print("matrix [" + i + "] [" + j + "] : ");
+                matrix[i][j] = sc.nextInt();
+               if( i == j)
+            {
+                diagnoalSum += matrix[i][j];
+            }
+            }
+            
+        }
+        System.out.println("the sum is :" + diagnoalSum);
+        
+        
+        
+    }
+}
