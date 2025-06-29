@@ -1,0 +1,37 @@
+pgrm name
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter a word:");
+        String str = sc.nextLine().toLowerCase();
+        
+        boolean[] visited = new boolean[str.length()];
+        boolean hasRepeats = false;
+
+        for (int i = 0; i < str.length(); i++) {
+            if (visited[i])
+                continue;
+
+            char ch = str.charAt(i);
+            int count = 1;
+
+            for (int j = i + 1; j < str.length(); j++) {
+                if (ch == str.charAt(j)) {
+                    visited[j] = true;
+                    count++;
+                }
+            }
+
+            if (count > 1) {
+                System.out.print(ch + " ");
+                hasRepeats = true;
+            }
+        }
+
+        if (!hasRepeats) {
+            System.out.println("No repeating letters found.");
+        }
+    }
+}
